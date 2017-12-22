@@ -49,8 +49,11 @@ class ggg(object):
   @neovim.autocmd("TextYankPost", pattern='*')
   def yank(self):
     ret = self.nvim.eval('@0')
+    '''escape処理'''
+    escape = ret.replace('"', '\"')
+    escape = escape.replace('\'', '\\\'')
     try:
-      self.nvim.command("echo '[yankPost@GGG]\n{ret}'".format(ret=ret))
+      self.nvim.command("echo '[yankPost@GGG]\n{ret}'".format(ret=escape))
     except neovim.api.nvim.NvimError as ex:
       ...
 
