@@ -16,3 +16,14 @@ class ggg(object):
   def pwd(self):
     pwd = os.popen('pwd').read()
     self.nvim.command("echo '[PWD@GGG]={}'".format(pwd))
+  
+  @neovim.command("Git")
+  def pwd(self):
+    add = os.popen('git add *').read()
+    commit = os.popen('git commit -m "add"').read()
+    push = os.popen('git push').read()
+    self.nvim.command("echo {}".format(add))
+    self.nvim.command("echo {}".format(commit))
+    self.nvim.command("echo {}".format(push))
+
+
