@@ -1,6 +1,7 @@
 import neovim
 import time
 import os
+import shlex
 '''examples'''
 @neovim.plugin
 class ggg(object):
@@ -50,8 +51,7 @@ class ggg(object):
   def yank(self):
     ret = self.nvim.eval('@0')
     '''escape処理'''
-    escape = ret.replace('"', '\"')
-    escape = escape.replace('\'', '\\\'')
+    escape = shlex.quote(ret)
     try:
       self.nvim.command("echo '[yankPost@GGG]\nshellescape({ret})'".format(ret=escape))
     except neovim.api.nvim.NvimError as ex:
