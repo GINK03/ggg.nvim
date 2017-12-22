@@ -53,7 +53,7 @@ class ggg(object):
     escape = ret.replace('"', '\"')
     escape = escape.replace('\'', '\\\'')
     try:
-      self.nvim.command("echo '[yankPost@GGG]\n{ret}'".format(ret=escape))
+      self.nvim.command("echo '[yankPost@GGG]\nshellescape({ret})'".format(ret=escape))
     except neovim.api.nvim.NvimError as ex:
       ...
 
