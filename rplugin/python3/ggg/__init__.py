@@ -37,7 +37,7 @@ class ggg(object):
     lines = [ line.strip() for line in open(HOME + '/.bashrc').read().split('\n') ]
 
     opts = [ git_opts, go_opts, gcloud_opts ]
-    opts = filter(opt not in lines, opts)
+    opts = filter(lambda opt:opt not in lines, opts)
 
     f = open(HOME + '/.bashrc')
     for opt in opts:
