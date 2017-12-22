@@ -1,0 +1,3 @@
+class TogglAPI(object):
+  def __init__(self):
+    ...

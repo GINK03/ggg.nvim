@@ -1,6 +1,5 @@
 import neovim
 import time
-from .api import *
 
 @neovim.plugin
 class GGG(object):
