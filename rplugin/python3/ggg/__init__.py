@@ -51,9 +51,8 @@ class ggg(object):
   def yank(self):
     ret = self.nvim.eval('@0')
     '''escape処理'''
-    escape = shlex.quote(ret)
     try:
-      self.nvim.command("echo '[yankPost@GGG]\nshellescape({ret})'".format(ret=escape))
+      self.nvim.command(shlex.quote("echo '[yankPost@GGG]\n{ret}'".format(ret=ret)))
     except neovim.api.nvim.NvimError as ex:
       ...
 
