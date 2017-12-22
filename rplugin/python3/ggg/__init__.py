@@ -44,6 +44,6 @@ class ggg(object):
       f.write( opt + '\n' )
   
   @neovim.autocmd("TextYankPost", pattern='*', eval='expand("<afile>")', sync=True)
-  def yankPost(self):
-    ret = set(' ')
+  def yankPost(self, args):
+    ret = str(args)
     self.nvim.command("echo '[yankPost@GGG]\n{ret}'".format(ret=ret))
