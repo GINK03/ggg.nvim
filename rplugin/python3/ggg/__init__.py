@@ -8,6 +8,9 @@ class ggg(object):
     self.nvim = nvim
     self.nvim.command("echo '非同期でgggプラグインが有効になりました'")
 
+  def enable(self):
+    ...
+
   @neovim.command("Gecho")
   def gecho(self):
     self.nvim.command("echo '[Echo Test]'")
