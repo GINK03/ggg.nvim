@@ -2,13 +2,36 @@ import neovim
 import time
 import os
 import shlex
-'''examples'''
+
+class Datastore(object):
+  def __init__(self, kind):
+    client = datastore.Client() 
+    self.client = client
+    self.kind = kind
+  def put(self, key:str, value:str):
+    key = self.client.key(self.kind, key)
+    task = datastore.Entity(key=key)
+    task['value'] = value
+    self.client.put(task)
+  def get(self, key:str):
+    key = self.client.key(self.kind, key)
+    #task = datastore.Entity(key=key)
+    return self.client.get(key).get('value') 
+  def delete(self, key:str):
+    key = self.client.key(self.kind, key)
+    self.client.delete(key)
+try:
+  datastore = Datastore()
+except Exception as ex:
+  ...
+from google.cloud import datastore
+
 @neovim.plugin
 class ggg(object):
   def __init__(self, nvim):
     self.nvim = nvim
     self.nvim.command("echo '非同期でgggプラグインが有効になりました'")
-
+    self.zero_register = ''
   def enable(self):
     ...
 
@@ -50,9 +73,12 @@ class ggg(object):
   @neovim.autocmd("TextYankPost", pattern='*')
   def yank(self):
     ret = self.nvim.eval('@0')
-    '''escape処理(何をやってもうまくいかない)'''
-    try:
-      self.nvim.command( "echo '{r}' ".format(r=ret.replace('"','”').replace("'", "’") ) )
-    except neovim.api.nvim.NvimError as ex:
-      ...
+    ''' zero_registerに保存して更新 '''
+    if self.zero_register != ret:
+      self.zero_register = ret
+      '''escape処理(何をやってもうまくいかない)'''
+      try:
+        self.nvim.command( "echo '{r}' ".format(r=ret.replace('"','”').replace("'", "’") ) )
+      except neovim.api.nvim.NvimError as ex:
+        ...
 
