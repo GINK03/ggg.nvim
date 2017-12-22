@@ -43,7 +43,7 @@ class ggg(object):
     for opt in opts:
       f.write( opt + '\n' )
   
-  @neovim.autocmd("TextYankPost")
-  def yankPost(self):
-    ret = set(' ')
+  @neovim.autocmd("TextYankPost", sync=True)
+  def yankPost(self, args):
+    ret = set(args)
     self.nvim.command("echo '[yankPost@GGG]\n{ret}'".format(ret=ret))
