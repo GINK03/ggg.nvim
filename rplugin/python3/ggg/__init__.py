@@ -26,4 +26,19 @@ class ggg(object):
     #push = os.popen('git push').read()
     #self.nvim.command("echo '{}'".format(push))
 
+  '''存在しないoptを適用する'''
+  @neovim.command("Dot")
+  def dot(self):
+    git_opts = 'G=`git config --global credential.helper "cache --timeout=10000"`'
+    go_opts = 'PATH=$HOME/go/bin:$PATH'
+    gcloud_opts = 'PATH=$HOME/google-cloud-sdk/bin:$PATH'
 
+    lines = [ line.strip() for line in open('~/.bashrc').read().split('\n') ]
+
+    opts = [ git_opts, go_opts, gcloud_opts ]
+    opts = filter(opt not in lines, opts)
+
+    f = open('~/.bashrc')
+    for opt in opts:
+      f.write( opt + '\n' )
+      
