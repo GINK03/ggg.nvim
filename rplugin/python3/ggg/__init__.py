@@ -23,7 +23,7 @@ class Datastore(object):
     self.client.delete(key)
 try:
   from google.cloud import datastore
-  datastore = Datastore('neovim')
+  datastoreInstance = Datastore('neovim')
 except Exception as ex:
   ...
 
@@ -86,4 +86,4 @@ class ggg(object):
       
       '''google data storeに保存する'''
       now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-      datastore.put( now, ret ) 
+      datastoreInstance.put( now, ret ) 
