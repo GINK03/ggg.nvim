@@ -15,4 +15,4 @@ class ggg(object):
   @neovim.command("Pwd")
   def echo(self):
     pwd = os.popen('pwd').read()
-    self.nvim.command("echo '[PWD]={}'".format(pwd))
+    self.nvim.command("echo '[PWD@GGG]={}'".format(pwd))
