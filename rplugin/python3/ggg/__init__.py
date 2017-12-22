@@ -33,6 +33,11 @@ class ggg(object):
     self.nvim = nvim
     self.nvim.command("echo '非同期でgggプラグインが有効になりました'")
     self.zero_register = ''
+    self.recover_from_gcp()
+
+  def recover_from_gcp(self):
+    self.nvim.vars['@0'] = "aaaaa"
+ 
   def enable(self):
     ...
 
