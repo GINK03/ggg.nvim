@@ -21,10 +21,10 @@ class ggg(object):
   def git(self):
     self.nvim.command("echo '[Load Git Repo function@GGG]'")
     add = os.popen('git add *').read()
-    self.nvim.command("echo '{}'".format(add))
-    commit = os.popen('git commit -m "add"').read()
-    self.nvim.command("echo '{}'".format(commit))
-    push = os.popen('git push').read()
-    self.nvim.command("echo '{}'".format(push))
+    #self.nvim.command("echo '{}'".format(add))
+    #commit = os.popen('git commit -m "add"').read()
+    #self.nvim.command("echo '{}'".format(commit))
+    #push = os.popen('git push').read()
+    #self.nvim.command("echo '{}'".format(push))
 
 
