@@ -52,7 +52,7 @@ class ggg(object):
     ret = self.nvim.eval('@0')
     '''escape処理'''
     try:
-      self.nvim.command("echom '{ret}'".format(ret=ret))
+      self.nvim.command("echon '{ret}'".format(ret=ret))
     except neovim.api.nvim.NvimError as ex:
       ...
 
