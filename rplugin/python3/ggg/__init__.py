@@ -20,10 +20,10 @@ class ggg(object):
   @neovim.command("Git")
   def git(self):
     add = os.popen('git add *').read()
-    commit = os.popen('git commit -m "add"').read()
-    push = os.popen('git push').read()
     self.nvim.command("echo {}".format(add))
+    commit = os.popen('git commit -m "add"').read()
     self.nvim.command("echo {}".format(commit))
+    push = os.popen('git push').read()
     self.nvim.command("echo {}".format(push))
 
 
