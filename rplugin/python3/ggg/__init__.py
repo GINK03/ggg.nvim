@@ -2,9 +2,9 @@ import neovim
 import time
 
 @neovim.plugin
-class GGG(object):
+class ggg(object):
   def __init__(self, nvim):
-        self.nvim = nvim
+    self.nvim = nvim
   
   @neovim.command("GGGEcho")
   def echo(self):
