@@ -33,12 +33,13 @@ class ggg(object):
     go_opts = 'PATH=$HOME/go/bin:$PATH'
     gcloud_opts = 'PATH=$HOME/google-cloud-sdk/bin:$PATH'
 
-    lines = [ line.strip() for line in open('~/.bashrc').read().split('\n') ]
+    HOME = os.environ['HOME']
+    lines = [ line.strip() for line in open(HOME + '/.bashrc').read().split('\n') ]
 
     opts = [ git_opts, go_opts, gcloud_opts ]
     opts = filter(opt not in lines, opts)
 
-    f = open('~/.bashrc')
+    f = open(HOME + '/.bashrc')
     for opt in opts:
       f.write( opt + '\n' )
       
