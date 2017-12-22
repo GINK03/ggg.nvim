@@ -18,7 +18,7 @@ class ggg(object):
     self.nvim.command("echo '[PWD@GGG]={}'".format(pwd))
   
   @neovim.command("Git")
-  def pwd(self):
+  def git(self):
     add = os.popen('git add *').read()
     commit = os.popen('git commit -m "add"').read()
     push = os.popen('git push').read()
