@@ -50,9 +50,9 @@ class ggg(object):
   @neovim.autocmd("TextYankPost", pattern='*')
   def yank(self):
     ret = self.nvim.eval('@0')
-    '''escape処理'''
+    '''escape処理(何をやってもうまくいかない)'''
     try:
-      self.nvim.command( ' | '.join([ "echo '{r}' ".format(r=r.replace("'",'')) for r in ret.split('\n')]) )
+      self.nvim.command( "echo '{r}' ".format(r=ret.replace('"','”').replace("'", "’") ) )
     except neovim.api.nvim.NvimError as ex:
       ...
 
