@@ -2,7 +2,8 @@ import neovim
 import time
 import os
 import shlex
-
+from datetime import datetime
+import json
 class Datastore(object):
   def __init__(self, kind):
     client = datastore.Client() 
@@ -21,10 +22,10 @@ class Datastore(object):
     key = self.client.key(self.kind, key)
     self.client.delete(key)
 try:
-  datastore = Datastore()
+  from google.cloud import datastore
+  datastore = Datastore('neovim')
 except Exception as ex:
   ...
-from google.cloud import datastore
 
 @neovim.plugin
 class ggg(object):
@@ -76,9 +77,13 @@ class ggg(object):
     ''' zero_registerに保存して更新 '''
     if self.zero_register != ret:
       self.zero_register = ret
+      
       '''escape処理(何をやってもうまくいかない)'''
       try:
         self.nvim.command( "echo '{r}' ".format(r=ret.replace('"','”').replace("'", "’") ) )
       except neovim.api.nvim.NvimError as ex:
         ...
-
+      
+      '''google data storeに保存する'''
+      now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+      datastore.put( now, ret ) 
