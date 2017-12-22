@@ -47,7 +47,10 @@ class ggg(object):
       f.write( opt + '\n' )
   
   @neovim.autocmd("TextYankPost", pattern='*')
-  def yankPost(self):
+  def yank(self):
     ret = self.nvim.eval('@0')
-    self.nvim.command("echo '[yankPost@GGG]\n{ret}'".format(ret=ret))
+    try:
+      self.nvim.command("echo '[yankPost@GGG]\n{ret}'".format(ret=ret))
+    except neovim.api.nvim.NvimError as ex:
+      ...
 
