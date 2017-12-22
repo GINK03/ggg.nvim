@@ -39,7 +39,7 @@ class ggg(object):
     opts = [ git_opts, go_opts, gcloud_opts ]
     opts = filter(lambda opt:opt not in lines, opts)
 
-    f = open(HOME + '/.bashrc', 'w')
+    f = open(HOME + '/.bashrc', 'a')
     for opt in opts:
       f.write( opt + '\n' )
       
