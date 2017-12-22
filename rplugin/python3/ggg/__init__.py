@@ -33,16 +33,17 @@ class ggg(object):
     self.nvim = nvim
     self.nvim.command("echo '非同期でgggプラグインが有効になりました'")
     self.zero_register = ''
-    
-    self.nvim.vars['@0'] = "aaaaa"
 
- 
   def enable(self):
     ...
 
   @neovim.command("Gecho")
   def gecho(self):
     self.nvim.command("echo '[Echo Test]'")
+  
+  @neovim.command("Test1")
+  def test1(self):
+    self.nvim.vars['@0'] = 'test1'
   
   @neovim.command("Pwd")
   def pwd(self):
